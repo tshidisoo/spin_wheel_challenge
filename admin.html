@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Draw admin</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+  <div id="demoBanner" class="demo-banner" hidden>Demo mode: Firebase isn't connected yet. Open the viewer page in another tab to watch your spins.</div>
+
+  <header class="top">
+    <h1>Draw admin</h1>
+    <p class="subtitle"><a href="./" target="_blank" rel="noopener">Open the viewer page</a></p>
+  </header>
+
+  <main class="admin">
+    <!-- Sign in -->
+    <section id="loginPanel" class="panel" hidden>
+      <h2>Sign in</h2>
+      <form id="loginForm" class="stack">
+        <label>Email <input id="email" type="email" autocomplete="username" required></label>
+        <label>Password <input id="password" type="password" autocomplete="current-password" required></label>
+        <button class="btn" type="submit">Sign in</button>
+        <p id="loginError" class="error" role="alert"></p>
+      </form>
+    </section>
+
+    <section id="notAdminPanel" class="panel" hidden>
+      <h2>Not an admin yet</h2>
+      <p>This account can sign in but isn't allowed to run the draw. In the Firebase console, add this ID under <code>admins</code> with the value <code>true</code> (README step 4):</p>
+      <p><code id="uid" class="uid"></code></p>
+      <button class="btn secondary" data-signout>Sign out</button>
+    </section>
+
+    <div id="adminPanels" hidden>
+      <!-- Draw -->
+      <section class="panel draw-panel">
+        <h2>This week's draw</h2>
+        <label>Prize in the box
+          <input id="prize" type="text" maxlength="80" placeholder="e.g. $10 airtime">
+        </label>
+        <p class="hint">Only admins can see the prize until the box opens.</p>
+        <div class="row">
+          <button id="spinBtn" class="btn big">Spin now</button>
+          <button id="resetBtn" class="btn secondary">Back to waiting screen</button>
+        </div>
+        <p id="drawStatus" class="hint" aria-live="polite"></p>
+      </section>
+
+      <!-- Names -->
+      <section class="panel">
+        <h2>Names on the wheel <span id="nameCount" class="pill">0</span></h2>
+        <p class="hint">Add people whose pledge is paid. One name per line. Add someone twice if they should have two chances.</p>
+        <form id="addForm" class="stack">
+          <textarea id="newNames" rows="4" placeholder="Tendai M.&#10;Rudo C.&#10;Blessing N."></textarea>
+          <button class="btn" type="submit">Add names</button>
+        </form>
+        <ul id="nameList" class="name-list"></ul>
+        <button id="clearBtn" class="btn secondary small">Remove all names</button>
+      </section>
+
+      <!-- Winners -->
+      <section class="panel">
+        <h2>Past winners</h2>
+        <ul id="winnerList" class="winner-list"></ul>
+      </section>
+
+      <p class="signout"><button class="btn secondary small" data-signout>Sign out</button></p>
+    </div>
+  </main>
+
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>

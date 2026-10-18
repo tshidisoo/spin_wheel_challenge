@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spin & Win</title>
+  <meta name="description" content="Watch the live pledge draw every Sunday after morning service.">
+  <meta property="og:title" content="Spin & Win: weekly pledge draw">
+  <meta property="og:description" content="Watch the live draw every Sunday after morning service. Who will open the mystery box?">
+  <!-- For WhatsApp link previews, change this to the full address, e.g. https://yourname.github.io/spin-box/og-image.png -->
+  <meta property="og:image" content="og-image.png">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8E%81%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="demoBanner" class="demo-banner" hidden>Demo mode: Firebase isn't connected yet, so this only syncs between tabs in this browser.</div>
+
+  <header class="top">
+    <h1 id="title">Spin & Win</h1>
+    <p id="subtitle" class="subtitle"></p>
+  </header>
+
+  <main class="stage">
+    <section class="wheel-wrap" aria-label="Name wheel">
+      <div class="pointer" aria-hidden="true"></div>
+      <canvas id="wheel" class="wheel"></canvas>
+      <div id="ticker" class="ticker" aria-live="off"></div>
+    </section>
+
+    <section class="box-wrap" aria-label="Mystery box">
+      <svg id="box" class="box" viewBox="0 0 240 270" role="img" aria-label="Mystery gift box">
+        <defs>
+          <clipPath id="bodyClip"><rect x="34" y="122" width="172" height="138" rx="4"/></clipPath>
+          <clipPath id="lidClip"><rect x="22" y="92" width="196" height="36" rx="4"/></clipPath>
+          <radialGradient id="glowGrad">
+            <stop offset="0" stop-color="#FFE9A8" stop-opacity="1"/>
+            <stop offset="1" stop-color="#FFE9A8" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <ellipse class="glow" cx="120" cy="110" rx="120" ry="90" fill="url(#glowGrad)"/>
+        <!-- body -->
+        <g>
+          <rect x="34" y="122" width="172" height="138" rx="4" fill="#FFFFFF" stroke="#D9D2C3" stroke-width="2"/>
+          <g clip-path="url(#bodyClip)" font-family="Georgia, serif" font-weight="700" fill="#B3202A">
+            <text x="44" y="170" font-size="44">?</text>
+            <text x="70" y="240" font-size="58" fill="#8E1820">?</text>
+            <text x="150" y="168" font-size="38">?</text>
+            <text x="168" y="236" font-size="52">?</text>
+            <text x="40" y="262" font-size="30" fill="#8E1820">?</text>
+            <text x="140" y="214" font-size="26" fill="#8E1820">?</text>
+            <text x="186" y="196" font-size="24">?</text>
+          </g>
+          <rect x="108" y="122" width="24" height="138" fill="#B3202A"/>
+          <rect x="108" y="122" width="5" height="138" fill="#D23A43"/>
+        </g>
+        <!-- lid with bow -->
+        <g id="lid" class="lid">
+          <rect x="22" y="92" width="196" height="36" rx="4" fill="#FFFFFF" stroke="#D9D2C3" stroke-width="2"/>
+          <g clip-path="url(#lidClip)" font-family="Georgia, serif" font-weight="700" fill="#B3202A">
+            <text x="36" y="124" font-size="30">?</text>
+            <text x="168" y="122" font-size="26" fill="#8E1820">?</text>
+            <text x="64" y="118" font-size="18" fill="#8E1820">?</text>
+            <text x="192" y="126" font-size="20">?</text>
+          </g>
+          <rect x="106" y="92" width="28" height="36" fill="#B3202A"/>
+          <g fill="#B3202A" stroke="#8E1820" stroke-width="2" stroke-linejoin="round">
+            <path d="M120 92 C 92 40, 46 52, 70 84 C 80 94, 104 94, 120 92 Z"/>
+            <path d="M120 92 C 148 40, 194 52, 170 84 C 160 94, 136 94, 120 92 Z"/>
+            <path d="M120 92 C 104 62, 86 64, 96 82 Z" fill="#D23A43"/>
+            <path d="M120 92 C 136 62, 154 64, 144 82 Z" fill="#D23A43"/>
+            <ellipse cx="120" cy="90" rx="14" ry="10"/>
+          </g>
+        </g>
+      </svg>
+      <p id="boxCaption" class="box-caption">What's in the box?</p>
+    </section>
+  </main>
+
+  <p id="status" class="status" aria-live="polite"></p>
+  <p id="count" class="count"></p>
+
+  <div id="result" class="result" hidden>
+    <div class="result-card" role="dialog" aria-labelledby="winnerName">
+      <p class="result-label">Congratulations</p>
+      <h2 id="winnerName"></h2>
+      <p class="result-label">you've won</p>
+      <p id="prizeText" class="prize"></p>
+      <button id="closeResult" class="btn">Close</button>
+    </div>
+  </div>
+  <canvas id="confetti" class="confetti" aria-hidden="true"></canvas>
+
+  <script type="module" src="js/viewer.js"></script>
+</body>
+</html>
