@@ -3,6 +3,7 @@
 A live name wheel with a mystery gift box. Everyone who opens the link sees the same spin at the same moment. When the wheel stops, the box opens and shows the winner's prize.
 
 - `index.html` is the page you share in the WhatsApp groups.
+- `join.html` is the sign-up form. Participants fill in their name, WhatsApp number and payment details, and an admin approves them before their name goes on the wheel.
 - `admin.html` is the fundraising team's screen. You add paid names, type the week's prize and press spin.
 
 The pages are plain HTML, CSS and JavaScript. Firebase (free plan) stores the names and the spin result.
@@ -30,6 +31,12 @@ Opening the files by double-clicking them won't work, because browsers block thi
 7. **Allow your site to sign in.** In Firebase, go to **Authentication → Settings → Authorized domains → Add domain** and add `<your-username>.github.io`.
 
 The Firebase values in `config.js` aren't secret. Every web app that uses Firebase exposes them. What keeps the draw safe is the database rules: anyone can watch, but only the accounts listed under `admins` can change names, prizes or spins.
+
+## Sign-ups
+
+Share `https://<your-username>.github.io/<repo-name>/join.html` (or the "Join the draw" link on the viewer page). New sign-ups appear on the admin page under **Waiting for approval**. Check the payment, then click **Approve and add to wheel** or **Reject**. Only admins can see phone numbers and payment details, and only the name goes on the wheel. You can still add names by hand as before.
+
+If you set up Firebase before sign-ups were added, paste the latest `database.rules.json` into **Realtime Database → Rules** and click **Publish**, or sign-ups will be refused.
 
 ## Every Sunday
 

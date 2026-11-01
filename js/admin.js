@@ -42,6 +42,7 @@ function subscribe() {
   store.onEntries((list) => { entries = list; renderNames(); refreshDraw(); });
   store.onState((s) => { state = s; refreshDraw(); });
   store.onWinners(renderWinners);
+  store.onRequests(renderRequests);
   store.onNextPrize((p) => { if (document.activeElement !== $("prize")) $("prize").value = p; refreshDraw(); });
 }
 
@@ -60,6 +61,59 @@ function renderNames() {
     return li;
   }));
   $("clearBtn").hidden = entries.length === 0;
+}
+
+function renderRequests(list) {
+  $("requestCount").textContent = list.length;
+  const ul = $("requestList");
+  if (!list.length) {
+    const li = document.createElement("li");
+    li.className = "empty";
+    li.textContent = "No sign-ups waiting.";
+    return ul.replaceChildren(li);
+  }
+  ul.replaceChildren(...list.map((r) => {
+    const li = document.createElement("li");
+    li.className = "request";
+    const line = (text, cls) => {
+      const p = document.createElement("p");
+      if (cls) p.className = cls;
+      p.textContent = text;
+      return p;
+    };
+    const name = document.createElement("strong");
+    name.textContent = r.name;
+    const phone = document.createElement("p");
+    const digits = (r.phone || "").replace(/\D/g, "");
+    const wa = document.createElement("a");
+    wa.href = "https://wa.me/" + digits;
+    wa.target = "_blank";
+    wa.rel = "noopener";
+    wa.textContent = r.phone;
+    phone.append("WhatsApp: ", wa);
+    li.append(name, line(`Pledge: ${r.pledge} · Paid by ${r.method}${r.reference ? ` · Ref: ${r.reference}` : ""}`), phone);
+    if (r.note) li.append(line(`"${r.note}"`, "note"));
+    if (r.submittedAt) li.append(line("Sent " + new Date(r.submittedAt).toLocaleString(undefined, { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }), "meta"));
+
+    const row = document.createElement("div");
+    row.className = "row";
+    const approve = document.createElement("button");
+    approve.className = "btn small";
+    approve.textContent = "Approve and add to wheel";
+    approve.addEventListener("click", async () => {
+      approve.disabled = true;
+      try { await store.approveRequest(r); } catch (err) { alert("Couldn't approve: " + err.message); approve.disabled = false; }
+    });
+    const reject = document.createElement("button");
+    reject.className = "btn secondary small";
+    reject.textContent = "Reject";
+    reject.addEventListener("click", () => {
+      if (confirm(`Reject ${r.name}'s sign-up? It will be deleted.`)) store.rejectRequest(r.id);
+    });
+    row.append(approve, reject);
+    li.append(row);
+    return li;
+  }));
 }
 
 function renderWinners(list) {

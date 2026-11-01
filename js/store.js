@@ -52,12 +52,19 @@ async function firebaseStore() {
     setNextPrize: (p) => set(ref(db, "admin/nextPrize"), p),
     setState: (st) => set(ref(db, "state"), st),
     addWinner: (w) => push(ref(db, "winners"), w),
+    onRequests: (cb) => onValue(ref(db, "requests"), (s) => cb(list(s))),
+    submitRequest: (r) => push(ref(db, "requests"), { ...r, submittedAt: serverTimestamp() }),
+    approveRequest: (req) => update(ref(db), {
+      ["entries/" + push(ref(db, "entries")).key]: { name: req.name, addedAt: serverTimestamp() },
+      ["requests/" + req.id]: null,
+    }),
+    rejectRequest: (id) => remove(ref(db, "requests/" + id)),
   };
 }
 
 function demoStore() {
   const KEY = "spinbox-demo";
-  const fresh = () => ({ entries: [], state: null, winners: [], nextPrize: "" });
+  const fresh = () => ({ entries: [], state: null, winners: [], nextPrize: "", requests: [] });
   const load = () => {
     try { return { ...fresh(), ...JSON.parse(localStorage.getItem(KEY) || "{}") }; }
     catch { return fresh(); }
@@ -92,5 +99,13 @@ function demoStore() {
     setNextPrize: (p) => { data.nextPrize = p; return save(); },
     setState: (st) => { data.state = st; return save(); },
     addWinner: (w) => { data.winners.push({ id: String(nextId++), ...w }); return save(); },
+    onRequests: (cb) => watch(() => data.requests, cb),
+    submitRequest: (r) => { data.requests.push({ id: String(nextId++), ...r, submittedAt: Date.now() }); return save(); },
+    approveRequest: (req) => {
+      data.requests = data.requests.filter((r) => r.id !== req.id);
+      data.entries.push({ id: String(nextId++), name: req.name, addedAt: Date.now() });
+      return save();
+    },
+    rejectRequest: (id) => { data.requests = data.requests.filter((r) => r.id !== id); return save(); },
   });
 }

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Join the draw</title>
+  <meta name="description" content="Paid your pledge? Add your name to the weekly Spin & Win draw.">
+  <meta property="og:title" content="Join the Spin & Win draw">
+  <meta property="og:description" content="Paid your pledge? Add your name to the weekly draw. The team will confirm and put you on the wheel.">
+  <meta property="og:image" content="og-image.png">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8E%81%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+  <div id="demoBanner" class="demo-banner" hidden>Demo mode: Firebase isn't connected yet, so sign-ups stay in this browser.</div>
+
+  <header class="top">
+    <h1 id="title">Join the draw</h1>
+    <p class="subtitle">Paid your pledge? Add your name to the wheel.</p>
+  </header>
+
+  <main class="admin">
+    <section id="formPanel" class="panel draw-panel">
+      <form id="joinForm" class="stack" novalidate>
+        <label>Your name, as it should appear on the wheel
+          <input id="name" type="text" maxlength="40" autocomplete="name" required placeholder="e.g. Rudo C.">
+        </label>
+        <label>WhatsApp number
+          <input id="phone" type="tel" maxlength="25" autocomplete="tel" required placeholder="e.g. +263 77 123 4567">
+        </label>
+        <label>Pledge amount
+          <input id="pledge" type="text" maxlength="30" required placeholder="e.g. $20">
+        </label>
+        <label>How you paid
+          <select id="method" required>
+            <option value="">Choose one</option>
+            <option>EcoCash</option>
+            <option>InnBucks</option>
+            <option>Bank transfer</option>
+            <option>Mukuru</option>
+            <option>Cash at church</option>
+            <option>Other</option>
+          </select>
+        </label>
+        <label>Payment reference <span class="optional">(optional)</span>
+          <input id="reference" type="text" maxlength="60" placeholder="e.g. transaction ID">
+        </label>
+        <label>Message to the team <span class="optional">(optional)</span>
+          <textarea id="note" rows="3" maxlength="200"></textarea>
+        </label>
+        <p class="hint">Only the fundraising team can see your number and payment details. Only your name goes on the wheel.</p>
+        <button id="submitBtn" class="btn big" type="submit">Send my details</button>
+        <p id="formError" class="error" role="alert"></p>
+      </form>
+    </section>
+
+    <section id="thanksPanel" class="panel draw-panel thanks" hidden>
+      <h2>Thank you!</h2>
+      <p>Your details are with the fundraising team. Once they've confirmed your payment, your name goes on the wheel.</p>
+      <p class="row center">
+        <a class="btn" href="./">Watch the draw</a>
+        <button id="againBtn" class="btn secondary" type="button">Add someone else</button>
+      </p>
+    </section>
+  </main>
+
+  <script type="module" src="js/join.js"></script>
+</body>
+</html>

@@ -13,7 +13,7 @@
 
   <header class="top">
     <h1>Draw admin</h1>
-    <p class="subtitle"><a href="./" target="_blank" rel="noopener">Open the viewer page</a></p>
+    <p class="subtitle"><a href="./" target="_blank" rel="noopener">Open the viewer page</a> · <a href="join.html" target="_blank" rel="noopener">Open the join form</a></p>
   </header>
 
   <main class="admin">
@@ -48,6 +48,13 @@
           <button id="resetBtn" class="btn secondary">Back to waiting screen</button>
         </div>
         <p id="drawStatus" class="hint" aria-live="polite"></p>
+      </section>
+
+      <!-- Sign-ups -->
+      <section class="panel">
+        <h2>Waiting for approval <span id="requestCount" class="pill">0</span></h2>
+        <p class="hint">People who filled in the join form. Check their payment, then approve to put their name on the wheel.</p>
+        <ul id="requestList" class="request-list"></ul>
       </section>
 
       <!-- Names -->
