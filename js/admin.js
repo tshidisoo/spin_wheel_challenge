@@ -43,6 +43,14 @@ function subscribe() {
   store.onState((s) => { state = s; refreshDraw(); });
   store.onWinners(renderWinners);
   store.onRequests(renderRequests);
+  let lastSettings;
+  store.onSpinSettings((v) => {
+    const key = JSON.stringify(v ?? null);
+    if (key === lastSettings) return; // only refill the boxes when the saved values actually change
+    lastSettings = key;
+    if (document.activeElement !== $("spinSeconds")) $("spinSeconds").value = v?.seconds ?? SETTINGS.spinSeconds;
+    if (document.activeElement !== $("spinTurns")) $("spinTurns").value = v?.turns ?? SETTINGS.spinTurns;
+  });
   store.onNextPrize((p) => { if (document.activeElement !== $("prize")) $("prize").value = p; refreshDraw(); });
 }
 
@@ -156,11 +164,31 @@ $("prize").addEventListener("input", () => {
   prizeTimer = setTimeout(() => store.setNextPrize($("prize").value.trim()), 500);
 });
 
+// Whole number within [min, max], or the fallback when the box is empty or invalid.
+function clampInput(el, fallback) {
+  const n = Math.round(Number(el.value));
+  if (!el.value || !Number.isFinite(n)) return fallback;
+  return Math.min(Number(el.max), Math.max(Number(el.min), n));
+}
+const spinSeconds = () => clampInput($("spinSeconds"), SETTINGS.spinSeconds);
+const spinTurns = () => clampInput($("spinTurns"), SETTINGS.spinTurns);
+
+let settingsTimer;
+for (const id of ["spinSeconds", "spinTurns"]) {
+  $(id).addEventListener("input", () => {
+    clearTimeout(settingsTimer);
+    settingsTimer = setTimeout(() => store.setSpinSettings({ seconds: spinSeconds(), turns: spinTurns() }), 500);
+  });
+  $(id).addEventListener("change", () => { $(id).value = id === "spinSeconds" ? spinSeconds() : spinTurns(); });
+}
+
 $("spinBtn").addEventListener("click", async () => {
   const prize = $("prize").value.trim();
   const names = entries.map((e) => e.name);
   if (!names.length || !prize) return;
-  if (!confirm(`Spin now for "${prize}" with ${names.length} names?`)) return;
+  const seconds = spinSeconds();
+  const turns = spinTurns();
+  if (!confirm(`Spin now for "${prize}" with ${names.length} names?\n${turns} turns over ${seconds} seconds.`)) return;
   $("spinBtn").disabled = true;
   const winner = randomInt(names.length);
   const startAt = store.now() + SETTINGS.countdownSeconds * 1000;
@@ -170,10 +198,10 @@ $("spinBtn").addEventListener("click", async () => {
     names,
     winner,
     jitter: (randomInt(1000) / 1000 - 0.5) * 0.7, // where inside the winner's slice the pointer stops
-    turns: 6 + randomInt(3),
+    turns,
     prize,
     startAt,
-    duration: SETTINGS.spinSeconds * 1000,
+    duration: seconds * 1000,
   };
   try {
     await store.setState(draw);

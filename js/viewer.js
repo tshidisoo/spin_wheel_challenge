@@ -4,8 +4,7 @@ import { Wheel, finalRotation, spinProgress } from "./wheel.js";
 import { burst } from "./confetti.js";
 
 const $ = (id) => document.getElementById(id);
-const SHAKE_MS = 1600;
-const OPEN_MS = 1000;
+const REVEAL_MS = 1200; // pause on the winner's name before the winner card appears
 
 document.title = SETTINGS.title;
 $("title").textContent = SETTINGS.title;
@@ -13,7 +12,6 @@ $("subtitle").textContent = SETTINGS.subtitle;
 $("demoBanner").hidden = !isDemo;
 
 const wheel = new Wheel($("wheel"));
-const box = $("box");
 let entries = [];
 let state = null;
 let dismissedSpin = null;
@@ -28,11 +26,6 @@ $("closeResult").addEventListener("click", () => {
   $("result").hidden = true;
 });
 
-function setBox(phase) {
-  box.classList.toggle("shake", phase === "shake");
-  box.classList.toggle("open", phase === "open");
-}
-
 function setText(id, text) {
   const el = $(id);
   if (el.textContent !== text) el.textContent = text;
@@ -46,7 +39,6 @@ function frame() {
     const names = entries.map((e) => e.name);
     wheel.setNames(names);
     wheel.draw(0);
-    setBox("closed");
     $("result").hidden = true;
     setText("ticker", "");
     setText("boxCaption", "What's in the box?");
@@ -63,7 +55,6 @@ function frame() {
 
   if (now < d.startAt) {
     wheel.draw(0);
-    setBox("closed");
     $("result").hidden = true;
     setText("ticker", "");
     setText("boxCaption", "What's in the box?");
@@ -71,30 +62,22 @@ function frame() {
   } else if (now < end) {
     const rot = finalRotation(d) * spinProgress(d, now);
     wheel.draw(rot);
-    setBox("closed");
     setText("ticker", d.names[wheel.indexAt(rot)] || "");
     setText("status", "Spinning…");
   } else {
     wheel.draw(finalRotation(d));
     setText("ticker", winnerName);
     const since = now - end;
-    if (since < SHAKE_MS) {
-      setBox("shake");
-      setText("status", `${winnerName}, let's open your box!`);
-    } else {
-      setBox("open");
-      setText("boxCaption", d.prize);
-      setText("status", `This week's winner: ${winnerName}`);
-      if (since >= SHAKE_MS + OPEN_MS) {
-        if (dismissedSpin !== d.spinId) {
-          setText("winnerName", winnerName);
-          setText("prizeText", d.prize);
-          $("result").hidden = false;
-        }
-        if (celebratedSpin !== d.spinId) {
-          celebratedSpin = d.spinId;
-          if (since < SHAKE_MS + OPEN_MS + 8000) burst($("confetti"));
-        }
+    setText("status", `This week's winner: ${winnerName}`);
+    if (since >= REVEAL_MS) {
+      if (dismissedSpin !== d.spinId) {
+        setText("winnerName", winnerName);
+        setText("prizeText", d.prize);
+        $("result").hidden = false;
+      }
+      if (celebratedSpin !== d.spinId) {
+        celebratedSpin = d.spinId;
+        if (since < REVEAL_MS + 8000) burst($("confetti"));
       }
     }
   }

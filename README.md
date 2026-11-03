@@ -1,6 +1,6 @@
 # Spin & Win: weekly pledge draw
 
-A live name wheel with a mystery gift box. Everyone who opens the link sees the same spin at the same moment. When the wheel stops, the box opens and shows the winner's prize.
+A live name wheel with a mystery gift box. Everyone who opens the link sees the same spin at the same moment. When the wheel stops, a winner card shows the winner's name and prize.
 
 - `index.html` is the page you share in the WhatsApp groups.
 - `join.html` is the sign-up form. Participants fill in their name, WhatsApp number and payment details, and an admin approves them before their name goes on the wheel.
@@ -40,9 +40,9 @@ If you set up Firebase before sign-ups were added, paste the latest `database.ru
 
 ## Every Sunday
 
-1. Before the service, open the admin page, add any newly paid names, and type this week's prize. Viewers can't see the prize until the box opens.
+1. Before the service, open the admin page, add any newly paid names, and type this week's prize. Viewers can't see the prize until the winner is shown. You can also set the spin time (seconds) and how many full turns the wheel makes.
 2. Share the viewer link in the groups, for example: "The draw is live after the service, open this link to watch."
-3. When it's time, press **Spin now**. Everyone with the page open gets a short countdown, then watches the wheel spin and the box open.
+3. When it's time, press **Spin now**. Everyone with the page open gets a short countdown, then watches the wheel spin and stop on the winner.
 4. The winner stays on screen until you press **Back to waiting screen**. Every draw is saved under **Past winners**.
 
 Names stay on the wheel after winning. To give someone an extra chance, add their name again.

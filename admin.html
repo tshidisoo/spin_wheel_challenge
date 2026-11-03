@@ -42,7 +42,16 @@
         <label>Prize in the box
           <input id="prize" type="text" maxlength="80" placeholder="e.g. $10 airtime">
         </label>
-        <p class="hint">Only admins can see the prize until the box opens.</p>
+        <p class="hint">Only admins can see the prize until the winner is shown.</p>
+        <div class="settings-row">
+          <label>Spin time (seconds)
+            <input id="spinSeconds" type="number" min="3" max="60" step="1" inputmode="numeric">
+          </label>
+          <label>Full turns before it stops
+            <input id="spinTurns" type="number" min="1" max="30" step="1" inputmode="numeric">
+          </label>
+        </div>
+        <p class="hint">The wheel makes this many full turns, slowing down over this many seconds, then lands on the winner. Saved for next time.</p>
         <div class="row">
           <button id="spinBtn" class="btn big">Spin now</button>
           <button id="resetBtn" class="btn secondary">Back to waiting screen</button>

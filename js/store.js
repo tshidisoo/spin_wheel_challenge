@@ -50,6 +50,8 @@ async function firebaseStore() {
     removeName: (id) => remove(ref(db, "entries/" + id)),
     clearNames: () => remove(ref(db, "entries")),
     setNextPrize: (p) => set(ref(db, "admin/nextPrize"), p),
+    onSpinSettings: (cb) => onValue(ref(db, "admin/spinSettings"), (s) => cb(s.val())),
+    setSpinSettings: (v) => set(ref(db, "admin/spinSettings"), v),
     setState: (st) => set(ref(db, "state"), st),
     addWinner: (w) => push(ref(db, "winners"), w),
     onRequests: (cb) => onValue(ref(db, "requests"), (s) => cb(list(s))),
@@ -64,7 +66,7 @@ async function firebaseStore() {
 
 function demoStore() {
   const KEY = "spinbox-demo";
-  const fresh = () => ({ entries: [], state: null, winners: [], nextPrize: "", requests: [] });
+  const fresh = () => ({ entries: [], state: null, winners: [], nextPrize: "", requests: [], spinSettings: null });
   const load = () => {
     try { return { ...fresh(), ...JSON.parse(localStorage.getItem(KEY) || "{}") }; }
     catch { return fresh(); }
@@ -97,6 +99,8 @@ function demoStore() {
     removeName: (id) => { data.entries = data.entries.filter((e) => e.id !== id); return save(); },
     clearNames: () => { data.entries = []; return save(); },
     setNextPrize: (p) => { data.nextPrize = p; return save(); },
+    onSpinSettings: (cb) => watch(() => data.spinSettings, cb),
+    setSpinSettings: (v) => { data.spinSettings = v; return save(); },
     setState: (st) => { data.state = st; return save(); },
     addWinner: (w) => { data.winners.push({ id: String(nextId++), ...w }); return save(); },
     onRequests: (cb) => watch(() => data.requests, cb),

@@ -64,3 +64,5 @@ input:focus, textarea:focus, select:focus { outline: 2px solid var(--khaki); bor
 .request .note { font-style: italic; }
 .request .row { margin-top: 10px; }
 .empty { color: var(--muted); margin: 0; }
+
+.settings-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 14px; }

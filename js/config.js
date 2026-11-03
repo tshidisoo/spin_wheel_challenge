@@ -3,7 +3,8 @@ export const SETTINGS = {
   title: "Spin & Win",
   subtitle: "Weekly pledge draw",
   nextDrawText: "Sunday after morning service",
-  spinSeconds: 12,      // how long the wheel spins
+  spinSeconds: 12,      // default spin time; admins can change it on the admin page
+  spinTurns: 7,         // default full turns before the wheel stops
   countdownSeconds: 5,  // countdown shown on every phone before the wheel starts
 };
 
