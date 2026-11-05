@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 760" role="img" aria-label="A smiling young church member in the all-white Guta outfit with a white belt, pointing up">
+  <!-- Generic illustrated young member in the women's Guta: all-white outfit with a white belt. Cropped below the waist. -->
+  <defs>
+    <linearGradient id="gSkin" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8A5733"/>
+      <stop offset=".55" stop-color="#704224"/>
+      <stop offset="1" stop-color="#5A331B"/>
+    </linearGradient>
+    <radialGradient id="gFace" cx=".42" cy=".38" r=".75">
+      <stop offset="0" stop-color="#93603A"/>
+      <stop offset=".6" stop-color="#7A4A2C"/>
+      <stop offset="1" stop-color="#60381F"/>
+    </radialGradient>
+    <linearGradient id="white" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset=".6" stop-color="#F7F4EE"/>
+      <stop offset="1" stop-color="#E6DFD2"/>
+    </linearGradient>
+    <linearGradient id="belt" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#EDE7DB"/>
+    </linearGradient>
+    <clipPath id="gTorso">
+      <path d="M176 430 C192 392 240 372 300 372 C360 372 408 392 424 430 L446 640 C470 690 486 730 496 760 H104 C114 730 130 690 154 640 Z"/>
+    </clipPath>
+  </defs>
+
+  <!-- relaxed left arm, cropped -->
+  <path d="M176 428 C150 452 138 520 136 600 L134 760 H188 L196 560 Z" fill="url(#gSkin)"/>
+  <path d="M178 426 C150 444 136 494 132 540 L190 554 L206 456 Z" fill="url(#white)" stroke="#CFC6B6" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M134 530 L190 544" stroke="#CFC6B6" stroke-width="3"/>
+
+  <!-- raised right arm, pointing up -->
+  <path d="M470 300 C482 262 500 228 520 196 L554 214 C538 250 522 290 508 322 Z" fill="url(#gSkin)"/>
+  <path d="M512 206 C506 180 520 160 542 160 C562 160 572 178 568 200 C564 220 548 228 532 226 C520 224 514 216 512 206 Z" fill="url(#gSkin)"/>
+  <path d="M546 168 C552 148 558 130 566 116 C572 106 586 112 582 124 C576 142 570 158 566 174 Z" fill="#7A4A2A"/>
+  <path d="M514 204 C504 200 500 190 506 184 C512 180 520 186 522 194" fill="#6E4124"/>
+  <path d="M520 178 C524 170 534 168 540 174" stroke="#4E2B15" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M518 192 C524 186 534 186 540 192" stroke="#4E2B15" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- short white sleeve -->
+  <path d="M392 378 C422 346 446 318 464 290 L526 326 C506 360 482 398 456 438 Z" fill="url(#white)" stroke="#CFC6B6" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M464 294 L524 330" stroke="#CFC6B6" stroke-width="3"/>
+
+  <!-- dress body -->
+  <path d="M176 430 C192 392 240 372 300 372 C360 372 408 392 424 430 L446 640 C470 690 486 730 496 760 H104 C114 730 130 690 154 640 Z" fill="url(#white)" stroke="#CFC6B6" stroke-width="2.5" stroke-linejoin="round"/>
+  <g clip-path="url(#gTorso)">
+    <!-- soft fold shading -->
+    <path d="M176 430 C198 490 196 570 170 660 L104 760 V430 Z" fill="#E2DACB" opacity=".6"/>
+    <path d="M424 430 C404 500 410 580 440 660 L496 760 V430 Z" fill="#DCD3C2" opacity=".7"/>
+    <path d="M240 672 C230 700 222 730 218 760" stroke="#DDD5C6" stroke-width="4" fill="none"/>
+    <path d="M300 676 V760" stroke="#DDD5C6" stroke-width="4"/>
+    <path d="M360 672 C370 700 378 730 382 760" stroke="#DDD5C6" stroke-width="4" fill="none"/>
+    <!-- bodice seam -->
+    <path d="M200 520 C240 534 360 534 400 520" stroke="#DDD5C6" stroke-width="3" fill="none"/>
+  </g>
+
+  <!-- white belt at the waist -->
+  <path d="M158 622 C220 640 380 640 442 622 L448 662 C384 682 216 682 152 662 Z" fill="url(#belt)" stroke="#B9AE9B" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M162 632 C222 650 378 650 438 632" stroke="#CFC6B6" stroke-width="2" stroke-dasharray="7 6" fill="none"/>
+  <path d="M156 654 C220 672 380 672 444 654" stroke="#CFC6B6" stroke-width="2" stroke-dasharray="7 6" fill="none"/>
+  <rect x="278" y="630" width="44" height="40" rx="8" fill="#FFFFFF" stroke="#A79B86" stroke-width="3"/>
+  <rect x="288" y="640" width="24" height="20" rx="4" fill="none" stroke="#A79B86" stroke-width="2.5"/>
+  <path d="M152 664 C216 684 384 684 448 664" stroke="#000" stroke-width="6" opacity=".05" fill="none"/>
+
+  <!-- neck -->
+  <path d="M270 300 L270 380 C284 392 316 392 330 380 L330 300 Z" fill="#5E361E"/>
+  <path d="M270 344 C286 358 314 358 330 344 L330 300 L270 300 Z" fill="#4E2B15" opacity=".5"/>
+
+  <!-- round neckline -->
+  <path d="M246 378 C262 408 338 408 354 378" stroke="#CFC6B6" stroke-width="3" fill="none"/>
+  <path d="M240 376 C258 418 342 418 360 376" stroke="#E6DFD2" stroke-width="6" fill="none"/>
+
+  <!-- hair: neat braids gathered into a bun -->
+  <circle cx="300" cy="78" r="44" fill="#1A110B"/>
+  <path d="M272 64 C286 50 314 50 328 64" stroke="#3A2A1E" stroke-width="3" fill="none"/>
+  <path d="M268 84 C286 98 314 98 332 84" stroke="#3A2A1E" stroke-width="3" fill="none"/>
+  <path d="M212 210 C206 146 246 108 300 108 C354 108 394 146 388 210 C376 182 350 160 300 158 C250 160 224 182 212 210 Z" fill="#1A110B"/>
+  <g stroke="#3A2A1E" stroke-width="3" fill="none" stroke-linecap="round">
+    <path d="M240 186 C250 150 272 124 296 112"/>
+    <path d="M268 166 C276 140 288 122 300 110"/>
+    <path d="M300 160 V110"/>
+    <path d="M332 166 C324 140 312 122 300 110"/>
+    <path d="M360 186 C350 150 328 124 304 112"/>
+  </g>
+
+  <!-- head -->
+  <ellipse cx="214" cy="236" rx="13" ry="21" fill="#6A3D22"/>
+  <ellipse cx="386" cy="236" rx="13" ry="21" fill="#5E361E"/>
+  <circle cx="212" cy="256" r="5" fill="#C9B78F"/>
+  <circle cx="388" cy="256" r="5" fill="#C9B78F"/>
+  <path d="M300 130 C356 130 386 172 384 230 C382 290 346 330 300 332 C254 330 218 290 216 230 C214 172 244 130 300 130 Z" fill="url(#gFace)"/>
+  <path d="M232 280 C246 314 270 330 300 332 C330 330 354 314 368 280 C354 304 330 318 300 320 C270 318 246 304 232 280 Z" fill="#4E2B15" opacity=".3"/>
+  <!-- hairline over forehead -->
+  <path d="M214 216 C222 160 256 124 300 124 C344 124 378 160 386 216 C370 188 338 174 300 174 C262 174 230 188 214 216 Z" fill="#1A110B"/>
+  <g stroke="#3A2A1E" stroke-width="3" fill="none" stroke-linecap="round">
+    <path d="M236 190 C246 160 266 140 292 128"/>
+    <path d="M266 176 C274 152 286 136 298 126"/>
+    <path d="M334 176 C326 152 314 136 302 126"/>
+    <path d="M364 190 C354 160 334 140 308 128"/>
+  </g>
+
+  <!-- eyebrows -->
+  <path d="M246 204 C258 194 274 194 284 200" stroke="#1A110B" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M316 200 C326 194 342 194 354 204" stroke="#1A110B" stroke-width="5" fill="none" stroke-linecap="round"/>
+
+  <!-- eyes with lashes -->
+  <g>
+    <path d="M248 230 C258 215 280 215 290 230 C280 242 258 242 248 230 Z" fill="#FBF6EC"/>
+    <circle cx="270" cy="229" r="10.5" fill="#3B200F"/>
+    <circle cx="270" cy="229" r="5.5" fill="#120904"/>
+    <circle cx="274" cy="225" r="3.2" fill="#FFFFFF"/>
+    <path d="M244 228 C256 210 282 210 294 228" stroke="#1A110B" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+    <path d="M246 222 L240 216 M252 217 L248 210 M259 214 L257 207" stroke="#1A110B" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M310 230 C320 215 342 215 352 230 C342 242 320 242 310 230 Z" fill="#FBF6EC"/>
+    <circle cx="330" cy="229" r="10.5" fill="#3B200F"/>
+    <circle cx="330" cy="229" r="5.5" fill="#120904"/>
+    <circle cx="334" cy="225" r="3.2" fill="#FFFFFF"/>
+    <path d="M306 228 C318 210 344 210 356 228" stroke="#1A110B" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+    <path d="M354 222 L360 216 M348 217 L352 210 M341 214 L343 207" stroke="#1A110B" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- nose -->
+  <path d="M297 240 C294 254 288 262 288 268 C290 276 298 278 300 276 C302 278 310 276 312 268 C312 262 306 254 303 240" fill="#5E361E" opacity=".35"/>
+  <path d="M289 268 C292 273 296 273 298 270" stroke="#3A1F0E" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M302 270 C304 273 308 273 311 268" stroke="#3A1F0E" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+  <!-- smile -->
+  <path d="M266 290 C280 314 320 314 334 290 C318 298 282 298 266 290 Z" fill="#5A2018"/>
+  <path d="M271 292 C286 299 314 299 329 292 L325 299 C310 304 290 304 275 299 Z" fill="#FFFFFF"/>
+  <path d="M266 290 C280 284 292 286 300 289 C308 286 320 284 334 290 C318 294 282 294 266 290 Z" fill="#7A2F28"/>
+
+  <!-- cheeks and light -->
+  <ellipse cx="250" cy="270" rx="16" ry="9" fill="#C8404A" opacity=".18"/>
+  <ellipse cx="350" cy="270" rx="16" ry="9" fill="#C8404A" opacity=".18"/>
+  <ellipse cx="282" cy="186" rx="26" ry="8" fill="#A8704A" opacity=".3"/>
+</svg>
