@@ -28,45 +28,19 @@
     </section>
 
     <section class="box-wrap" aria-label="Mystery box">
-      <svg id="box" class="box" viewBox="0 0 240 270" role="img" aria-label="Mystery gift box">
-        <defs>
-          <clipPath id="bodyClip"><rect x="34" y="122" width="172" height="138" rx="4"/></clipPath>
-          <clipPath id="lidClip"><rect x="22" y="92" width="196" height="36" rx="4"/></clipPath>
-        </defs>
-        <!-- body -->
-        <g>
-          <rect x="34" y="122" width="172" height="138" rx="4" fill="#FFFFFF" stroke="#D9D2C3" stroke-width="2"/>
-          <g clip-path="url(#bodyClip)" font-family="Georgia, serif" font-weight="700" fill="#B3202A">
-            <text x="44" y="170" font-size="44">?</text>
-            <text x="70" y="240" font-size="58" fill="#8E1820">?</text>
-            <text x="150" y="168" font-size="38">?</text>
-            <text x="168" y="236" font-size="52">?</text>
-            <text x="40" y="262" font-size="30" fill="#8E1820">?</text>
-            <text x="140" y="214" font-size="26" fill="#8E1820">?</text>
-            <text x="186" y="196" font-size="24">?</text>
-          </g>
-          <rect x="108" y="122" width="24" height="138" fill="#B3202A"/>
-          <rect x="108" y="122" width="5" height="138" fill="#D23A43"/>
-        </g>
-        <!-- lid with bow -->
-        <g id="lid" class="lid">
-          <rect x="22" y="92" width="196" height="36" rx="4" fill="#FFFFFF" stroke="#D9D2C3" stroke-width="2"/>
-          <g clip-path="url(#lidClip)" font-family="Georgia, serif" font-weight="700" fill="#B3202A">
-            <text x="36" y="124" font-size="30">?</text>
-            <text x="168" y="122" font-size="26" fill="#8E1820">?</text>
-            <text x="64" y="118" font-size="18" fill="#8E1820">?</text>
-            <text x="192" y="126" font-size="20">?</text>
-          </g>
-          <rect x="106" y="92" width="28" height="36" fill="#B3202A"/>
-          <g fill="#B3202A" stroke="#8E1820" stroke-width="2" stroke-linejoin="round">
-            <path d="M120 92 C 92 40, 46 52, 70 84 C 80 94, 104 94, 120 92 Z"/>
-            <path d="M120 92 C 148 40, 194 52, 170 84 C 160 94, 136 94, 120 92 Z"/>
-            <path d="M120 92 C 104 62, 86 64, 96 82 Z" fill="#D23A43"/>
-            <path d="M120 92 C 136 62, 154 64, 144 82 Z" fill="#D23A43"/>
-            <ellipse cx="120" cy="90" rx="14" ry="10"/>
-          </g>
-        </g>
-      </svg>
+      <div class="box3d-scene" role="img" aria-label="Mystery gift box">
+        <div id="box" class="box3d">
+          <div class="face front"></div>
+          <div class="face back"></div>
+          <div class="face right"></div>
+          <div class="face left"></div>
+          <div class="face top"></div>
+          <div class="face bottom"></div>
+          <div class="bow"></div>
+          <div class="bow turned"></div>
+        </div>
+        <div class="box3d-shadow"></div>
+      </div>
       <p id="boxCaption" class="box-caption">What's in the box?</p>
     </section>
   </main>

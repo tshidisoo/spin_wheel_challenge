@@ -74,7 +74,52 @@ body {
 }
 
 .box-wrap { width: min(52vw, 280px); text-align: center; }
-.box { width: 100%; overflow: visible; }
+/* 3D mystery box: a cube of six faces turned by js/viewer.js */
+.box3d-scene {
+  --s: min(34vw, 170px);
+  position: relative;
+  height: calc(var(--s) * 1.75);
+  perspective: 900px;
+  display: grid;
+  place-items: center;
+}
+.box3d {
+  position: relative;
+  width: var(--s);
+  height: var(--s);
+  margin-top: calc(var(--s) * 0.3);
+  transform-style: preserve-3d;
+  transform: rotateX(-16deg) rotateY(0deg);
+}
+.box3d .face {
+  position: absolute;
+  inset: 0;
+  background: #FFFFFF url("../img/box-side.svg") center / 100% 100%;
+  backface-visibility: hidden;
+}
+.box3d .front  { transform: translateZ(calc(var(--s) / 2)); }
+.box3d .back   { transform: rotateY(180deg) translateZ(calc(var(--s) / 2)); }
+.box3d .right  { transform: rotateY(90deg) translateZ(calc(var(--s) / 2)); filter: brightness(.93); }
+.box3d .left   { transform: rotateY(-90deg) translateZ(calc(var(--s) / 2)); filter: brightness(.93); }
+.box3d .top    { transform: rotateX(90deg) translateZ(calc(var(--s) / 2)); background-image: url("../img/box-top.svg"); }
+.box3d .bottom { transform: rotateX(-90deg) translateZ(calc(var(--s) / 2)); background: #E9E3D6; }
+.box3d .bow {
+  position: absolute;
+  left: 0;
+  width: var(--s);
+  height: calc(var(--s) * 0.4);
+  top: calc(var(--s) * -0.4);
+  background: url("../img/box-bow.svg") center bottom / contain no-repeat;
+}
+.box3d .bow.turned { transform: rotateY(90deg); }
+.box3d-shadow {
+  position: absolute;
+  bottom: calc(var(--s) * 0.02);
+  width: calc(var(--s) * 1.1);
+  height: calc(var(--s) * 0.14);
+  border-radius: 50%;
+  background: radial-gradient(rgba(0,0,0,.22), rgba(0,0,0,0) 70%);
+}
 .box-caption { margin: 6px 0 0; font-weight: 700; color: var(--red); font-size: 18px; }
 
 
